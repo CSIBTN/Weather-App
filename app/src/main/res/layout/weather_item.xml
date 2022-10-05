@@ -2,8 +2,9 @@
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp">
+    android:layout_height="350dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -36,36 +37,34 @@
 
             <TextView
                 android:id="@+id/tvDegrees"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="@string/degrees"
                 android:textColor="@color/black"
                 android:textSize="32sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivWeather"
                 app:layout_constraintTop_toTopOf="@+id/ivWeather" />
 
             <TextView
                 android:id="@+id/tvWeatherDescription"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="4dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/weather_description"
+                android:layout_marginStart="4dp"
                 android:textColor="@color/black"
-                android:textSize="32sp"
-                app:layout_constraintBottom_toBottomOf="@+id/ivWeather"
+                android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivWeather"
-                app:layout_constraintTop_toBottomOf="@+id/tvDegrees" />
+                app:layout_constraintTop_toBottomOf="@+id/tvDegrees"
+                tools:text="@string/weather_description" />
 
             <TextView
                 android:id="@+id/tvCountryHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="32dp"
                 android:text="@string/country_header"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"

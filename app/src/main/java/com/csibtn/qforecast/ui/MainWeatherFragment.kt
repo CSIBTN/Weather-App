@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.csibtn.qforecast.databinding.FragmentWeatherBinding
 import com.csibtn.qforecast.di.AppModule
 import kotlinx.coroutines.launch
@@ -25,10 +26,14 @@ class MainWeatherFragment() : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentWeatherBinding.inflate(inflater, container, false)
+        binding.rvForecastPreview.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         binding.etPlace.setOnEditorActionListener { textView, _, _ ->
             viewLifecycleOwner.lifecycleScope.launch {
                 val place = viewModel.getPlaceByName(textView.text.toString())[0]
-                val weatherForecastSingle = viewModel.getForecast(place.latitude,place.longitude)
+                val weatherForecastList = viewModel.getForecast(place.latitude, place.longitude)
+                binding.rvForecastPreview.adapter =
+                    WeatherForecastAdapter(weatherForecastList, place)
             }
             true
         }
