@@ -10,18 +10,14 @@ import com.csibtn.qforecast.data.Weather
 import com.csibtn.qforecast.databinding.WeatherItemBinding
 import kotlin.math.roundToInt
 
-class WeatherForecastAdapter(
-    private val forecastList: Map<String, List<Weather>>,
+class CurrentDayWeatherAdapter(
+    private val weatherList: List<Weather>,
     private val place: Place,
-    private val context: Context,
-    private val onClickCallback: (List<Weather>) -> Unit
-) :
-    RecyclerView.Adapter<WeatherForecastAdapter.WeatherHolder>() {
-
-    inner class WeatherHolder(private val binding: WeatherItemBinding) :
+    private val context: Context
+) : RecyclerView.Adapter<CurrentDayWeatherAdapter.CurrentDayHolder>() {
+    inner class CurrentDayHolder(private val binding: WeatherItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(weatherForecastForADay: List<Weather>) {
-            val weather = weatherForecastForADay[0]
+        fun bind(weather: Weather) {
             binding.tvDegrees.text = "${weather.temperature.temp.roundToInt()}°c"
             binding.tvCountry.text = place.country
             binding.tvPlace.text = place.name
@@ -31,26 +27,21 @@ class WeatherForecastAdapter(
                 .into(binding.ivWeather)
             binding.tvWeatherDescription.text = weather.weatherDescription[0].description
 
-            binding.root.setOnClickListener {
-                onClickCallback(weatherForecastForADay)
-            }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = WeatherItemBinding.inflate(layoutInflater, parent, false)
-        return WeatherHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrentDayHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = WeatherItemBinding.inflate(inflater, parent, false)
+        return CurrentDayHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: WeatherHolder, position: Int) {
-        forecastList[forecastList.keys.toList()[position]]?.let { holder.bind(it) }
+    override fun onBindViewHolder(holder: CurrentDayHolder, position: Int) {
+        holder.bind(weatherList[position])
     }
 
-    override fun getItemCount(): Int = forecastList.size
+    override fun getItemCount(): Int = weatherList.size
 
     private fun imageLink(iconId: String): String =
         "http://openweathermap.org/img/wn/$iconId@2x.png"
-
-
 }

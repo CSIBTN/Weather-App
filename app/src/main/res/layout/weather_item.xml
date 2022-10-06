@@ -57,14 +57,14 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivWeather"
                 app:layout_constraintTop_toBottomOf="@+id/tvDegrees"
-                tools:text="@string/weather_description" />
+                tools:text="Cloudy" />
 
             <TextView
                 android:id="@+id/tvCountryHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:text="@string/country_header"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -74,7 +74,7 @@
                 android:id="@+id/tvPlaceHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:text="@string/place_header"
                 android:textSize="24sp"
@@ -85,10 +85,10 @@
                 android:id="@+id/tvCountry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="48dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp"
-                android:text="@string/country"
+                tools:text="Ukraine"
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -98,9 +98,9 @@
                 android:id="@+id/tvPlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
+                android:layout_marginStart="48dp"
                 android:layout_marginTop="2dp"
-                android:text="@string/place"
+                tools:text="Kyiv, Podil"
                 android:textColor="@color/black"
                 android:textSize="22sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -115,9 +115,7 @@
                 android:progress="80"
                 android:progressDrawable="@drawable/air_quality_bar"
                 android:rotation="-90"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvPlace"
                 app:layout_constraintTop_toBottomOf="@+id/tvWeatherDescription" />
 
             <TextView
@@ -130,6 +128,29 @@
                 app:layout_constraintEnd_toEndOf="@+id/progressBar"
                 app:layout_constraintStart_toStartOf="@+id/progressBar"
                 app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+            <TextView
+                android:id="@+id/tvDateHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="48dp"
+                android:text="@string/date_header"
+                android:textSize="24sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPlaceHeader" />
+
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                tools:text="22.04.22"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvDateHeader"
+                app:layout_constraintStart_toEndOf="@id/tvDateHeader"
+                app:layout_constraintTop_toTopOf="@+id/tvDateHeader" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,5 +7,20 @@
     <fragment
         android:id="@+id/mainWeatherFragment"
         android:name="com.csibtn.qforecast.ui.MainWeatherFragment"
-        android:label="MainWeatherFragment" />
+        android:label="MainWeatherFragment">
+        <action
+            android:id="@+id/showFullDayForecast"
+            app:destination="@id/dayWeatherFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/dayWeatherFragment"
+        android:name="com.csibtn.qforecast.ui.DayWeatherFragment"
+        android:label="DayWeatherFragment" >
+        <argument
+            android:name="currentDayWeather"
+            app:argType="com.csibtn.qforecast.data.Weather[]" />
+        <argument
+            android:name="place"
+            app:argType="com.csibtn.qforecast.data.Place" />
+    </fragment>
 </navigation>

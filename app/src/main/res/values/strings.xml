@@ -3,12 +3,10 @@
     <string name="search_box">Find your place</string>
     <string name="weather_icon_description">weather</string>
     <string name="degrees">0°c</string>
-    <string name="weather_description">Clody, Moderate Wind, Precipitation</string>
-    <string name="country">Ukraine</string>
-    <string name="place">Kyiv, Podil</string>
     <string name="place_header">Place:</string>
     <string name="country_header">Country:</string>
     <string name="air_quality">Air QL</string>
     <string name="temperature_map">Temperature map</string>
     <string name="temperature_map_description">temperature map</string>
+    <string name="date_header">Date:</string>
 </resources>

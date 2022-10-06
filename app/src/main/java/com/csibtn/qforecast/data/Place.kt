@@ -9,6 +9,6 @@ data class Place(
     val country: String,
     @Json(name = "lat") val latitude: Double,
     @Json(name = "lon") val longitude: Double,
-)
+):java.io.Serializable
 
 

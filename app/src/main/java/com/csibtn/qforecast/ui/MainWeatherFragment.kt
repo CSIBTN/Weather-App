@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.csibtn.qforecast.databinding.FragmentWeatherBinding
 import com.csibtn.qforecast.di.AppModule
@@ -33,17 +34,24 @@ class MainWeatherFragment() : Fragment() {
                 val place = viewModel.getPlaceByName(textView.text.toString())[0]
                 val weatherForecastList = viewModel.getForecast(place.latitude, place.longitude)
                 binding.rvForecastPreview.adapter =
-                    WeatherForecastAdapter(weatherForecastList, place)
+                    WeatherForecastAdapter(
+                        weatherForecastList,
+                        place,
+                        requireContext()
+                    ) { weatherList ->
+                        findNavController().navigate(
+                            MainWeatherFragmentDirections.showFullDayForecast(
+                                weatherList.toTypedArray(),
+                                place
+                            )
+                        )
+                    }
             }
             true
         }
         return binding.root
     }
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 
     override fun onDestroy() {
         super.onDestroy()
