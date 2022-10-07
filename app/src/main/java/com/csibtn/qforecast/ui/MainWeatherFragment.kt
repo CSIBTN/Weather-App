@@ -46,6 +46,14 @@ class MainWeatherFragment() : Fragment() {
                             )
                         )
                     }
+                binding.btnMap.setOnClickListener {
+                    findNavController().navigate(
+                        MainWeatherFragmentDirections.showMap(
+                            place.latitude.toFloat(),
+                            place.longitude.toFloat()
+                        )
+                    )
+                }
             }
             true
         }

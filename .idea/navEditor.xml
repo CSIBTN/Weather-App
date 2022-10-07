@@ -13,8 +13,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="219" />
-                            <option name="y" value="-16" />
+                            <option name="x" value="267" />
+                            <option name="y" value="223" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -27,6 +27,32 @@
                           <Point>
                             <option name="x" value="-106" />
                             <option name="y" value="-17" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_mainWeatherFragment_to_mapFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="showFullDayForecast">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="mapFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="258" />
+                            <option name="y" value="-370" />
                           </Point>
                         </option>
                       </LayoutPositions>

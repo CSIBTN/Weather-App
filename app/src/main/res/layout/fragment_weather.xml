@@ -32,29 +32,19 @@
         app:layout_constraintTop_toBottomOf="@+id/etPlace" />
 
 
-    <TextView
-        android:id="@+id/tvTemperatureMap"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMap"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/temperature_map"
-        android:textColor="@color/black"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/rvForecastPreview" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_margin="16dp"
-        android:contentDescription="@string/temperature_map_description"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/map_button"
+        android:layout_marginTop="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:backgroundTint="@color/map_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvTemperatureMap"
-        tools:src="@drawable/temperature_map" />
+        app:layout_constraintTop_toBottomOf="@+id/rvForecastPreview" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

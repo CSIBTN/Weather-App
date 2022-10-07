@@ -6,7 +6,8 @@
     <string name="place_header">Place:</string>
     <string name="country_header">Country:</string>
     <string name="air_quality">Air QL</string>
-    <string name="temperature_map">Temperature map</string>
+    <string name="temperature_map">On Map</string>
     <string name="temperature_map_description">temperature map</string>
     <string name="date_header">Date:</string>
+    <string name="map_button">Show map</string>
 </resources>
