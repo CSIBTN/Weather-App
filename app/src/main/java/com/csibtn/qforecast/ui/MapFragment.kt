@@ -20,10 +20,10 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 import com.markodevcic.peko.Peko
 import com.markodevcic.peko.PermissionResult
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class MapFragment : Fragment(), OnMapReadyCallback {
-    private var isPermissionGranted = false
     private val mapArgs: MapFragmentArgs by navArgs()
     private lateinit var map: GoogleMap
 
@@ -31,11 +31,12 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         val binding = FragmentMapBinding.inflate(inflater, container, false)
-        val mapFragment = childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
-        checkIfPermissionGranted()
-
-        if (isPermissionGranted)
-            mapFragment.getMapAsync(this)
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(500)
+            val mapFragment =
+                childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
+                mapFragment.getMapAsync(this@MapFragment)
+        }
         return binding.root
     }
 
@@ -48,22 +49,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         map.moveCamera(CameraUpdateFactory.newLatLng(placeLocation))
     }
 
-    private fun checkIfPermissionGranted() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            val result =
-                Peko.requestPermissionsAsync(
-                    requireContext(),
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                )
-            val result2 = Peko.requestPermissionsAsync(
-                requireContext(),
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-            if (result is PermissionResult.Granted && result2 is PermissionResult.Granted) {
-                isPermissionGranted = true
-            }
-        }
-    }
+
 
 
 }

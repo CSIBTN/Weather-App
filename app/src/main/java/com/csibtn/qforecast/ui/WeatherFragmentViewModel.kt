@@ -1,6 +1,7 @@
 package com.csibtn.qforecast.ui
 
 import androidx.lifecycle.ViewModel
+import com.csibtn.qforecast.data.Place
 import com.csibtn.qforecast.data.Weather
 import com.csibtn.qforecast.data.WeatherRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -8,9 +9,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class WeatherFragmentViewModel @Inject constructor(
-    private val weatherRepository: WeatherRepository
+    private val weatherRepository: WeatherRepository,
 ) : ViewModel() {
 
+    private var weather: Map<String, List<Weather>>
+    val _weather
+    get() = weather
+
+    init {
+        weather = emptyMap()
+    }
 
     suspend fun getPlaceByName(placeName: String) =
         weatherRepository.fetchPlaceLocation(placeName)
@@ -20,10 +28,15 @@ class WeatherFragmentViewModel @Inject constructor(
         longitude: Double,
         units: String = "metric"
     ): Map<String, List<Weather>> {
-        val weatherList =
-            sortByDays(weatherRepository.fetch5DayForecast(latitude, longitude, units).forecastList)
 
-        return weatherList
+        weather = sortByDays(
+            weatherRepository.fetch5DayForecast(
+                latitude,
+                longitude,
+                units
+            ).forecastList
+        )
+        return _weather
     }
 
     private fun sortByDays(dayForecast: List<Weather>): Map<String, List<Weather>> {

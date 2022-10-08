@@ -5,16 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.csibtn.qforecast.data.Place
 import com.csibtn.qforecast.databinding.FragmentWeatherBinding
-import com.csibtn.qforecast.di.AppModule
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainWeatherFragment() : Fragment() {
-    private val viewModel: WeatherFragmentViewModel =
-        WeatherFragmentViewModel(AppModule.getWeatherRepository())
+    private val viewModel: WeatherFragmentViewModel by viewModels()
     private var _binding: FragmentWeatherBinding? = null
     private val binding
         get() = checkNotNull(_binding) {
@@ -29,6 +31,7 @@ class MainWeatherFragment() : Fragment() {
         _binding = FragmentWeatherBinding.inflate(inflater, container, false)
         binding.rvForecastPreview.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        binding.rvForecastPreview.adapter = WeatherForecastAdapter(viewModel._weather,Place("","",0.5,0.5),requireContext()){}
         binding.etPlace.setOnEditorActionListener { textView, _, _ ->
             viewLifecycleOwner.lifecycleScope.launch {
                 val place = viewModel.getPlaceByName(textView.text.toString())[0]
