@@ -11,16 +11,24 @@ import com.csibtn.qforecast.databinding.WeatherItemBinding
 import kotlin.math.roundToInt
 
 class WeatherForecastAdapter(
+    private val airQuality : Int ,
+    private val place: Place = Place("", "", 0.5, 0.5),
     private val forecastList: Map<String, List<Weather>>,
-    private val place: Place,
     private val context: Context,
-    private val onClickCallback: (List<Weather>) -> Unit
+    private val onClickCallback: (List<Weather>) -> Unit,
 ) :
     RecyclerView.Adapter<WeatherForecastAdapter.WeatherHolder>() {
 
     inner class WeatherHolder(private val binding: WeatherItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(weatherForecastForADay: List<Weather>) {
+            when(airQuality){
+                1 -> binding.airQualityProgressBar.progress = 100
+                2 -> binding.airQualityProgressBar.progress = 80
+                3 -> binding.airQualityProgressBar.progress = 50
+                4 -> binding.airQualityProgressBar.progress = 20
+                else -> binding.airQualityProgressBar.progress = 5
+            }
             val weather = weatherForecastForADay[0]
             binding.tvDegrees.text = "${weather.temperature.temp.roundToInt()}°c"
             binding.tvCountry.text = place.country

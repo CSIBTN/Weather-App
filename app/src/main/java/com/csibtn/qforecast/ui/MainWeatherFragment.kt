@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.csibtn.qforecast.data.Place
 import com.csibtn.qforecast.databinding.FragmentWeatherBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -31,34 +30,62 @@ class MainWeatherFragment() : Fragment() {
         _binding = FragmentWeatherBinding.inflate(inflater, container, false)
         binding.rvForecastPreview.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        binding.rvForecastPreview.adapter = WeatherForecastAdapter(viewModel._weather,Place("","",0.5,0.5),requireContext()){}
+        val place = viewModel._place
+        val weather = viewModel._weather
+        binding.rvForecastPreview.adapter =
+            WeatherForecastAdapter(
+                1,
+                forecastList = weather,
+                place = place,
+                context = requireContext()
+            ) { weatherList ->
+                findNavController().navigate(
+                    MainWeatherFragmentDirections.showFullDayForecast(
+                        weatherList.toTypedArray(),
+                        place
+                    )
+                )
+            }
         binding.etPlace.setOnEditorActionListener { textView, _, _ ->
             viewLifecycleOwner.lifecycleScope.launch {
-                val place = viewModel.getPlaceByName(textView.text.toString())[0]
-                val weatherForecastList = viewModel.getForecast(place.latitude, place.longitude)
+                val newPlace = viewModel.getPlaceByName(textView.text.toString())
+                val weatherForecastList =
+                    viewModel.getForecast(newPlace.latitude, newPlace.longitude)
+                val airQuality =
+                    viewModel.getAirQualityData(newPlace.latitude, newPlace.longitude).quality.score
+
                 binding.rvForecastPreview.adapter =
                     WeatherForecastAdapter(
+                        airQuality,
+                        newPlace,
                         weatherForecastList,
-                        place,
                         requireContext()
                     ) { weatherList ->
                         findNavController().navigate(
                             MainWeatherFragmentDirections.showFullDayForecast(
                                 weatherList.toTypedArray(),
-                                place
+                                newPlace
                             )
                         )
                     }
                 binding.btnMap.setOnClickListener {
                     findNavController().navigate(
                         MainWeatherFragmentDirections.showMap(
-                            place.latitude.toFloat(),
-                            place.longitude.toFloat()
+                            newPlace.latitude.toFloat(),
+                            newPlace.longitude.toFloat()
                         )
                     )
                 }
             }
             true
+        }
+        binding.btnMap.setOnClickListener {
+            findNavController().navigate(
+                MainWeatherFragmentDirections.showMap(
+                    place.latitude.toFloat(),
+                    place.longitude.toFloat()
+                )
+            )
         }
         return binding.root
     }

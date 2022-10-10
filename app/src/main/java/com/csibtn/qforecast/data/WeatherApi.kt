@@ -16,5 +16,11 @@ interface WeatherApi {
         @Query("lat") latitude: Double,
         @Query("lon") longitude: Double,
         @Query("units") units: String = "metric"
-    ) : Forecast
+    ): Forecast
+
+    @GET("data/2.5/air_pollution?appid=$api_key")
+    suspend fun getAirQualityData(
+        @Query("lat") latitude: Double,
+        @Query("lon") longitude: Double,
+    ): AirQuality
 }

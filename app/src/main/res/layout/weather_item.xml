@@ -107,7 +107,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tvPlaceHeader" />
 
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/airQualityProgressBar"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:elevation="4dp"
@@ -124,10 +124,10 @@
                 android:text="@string/air_quality"
                 android:textColor="@color/black"
                 android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@+id/progressBar"
-                app:layout_constraintEnd_toEndOf="@+id/progressBar"
-                app:layout_constraintStart_toStartOf="@+id/progressBar"
-                app:layout_constraintTop_toTopOf="@+id/progressBar" />
+                app:layout_constraintBottom_toBottomOf="@+id/airQualityProgressBar"
+                app:layout_constraintEnd_toEndOf="@+id/airQualityProgressBar"
+                app:layout_constraintStart_toStartOf="@+id/airQualityProgressBar"
+                app:layout_constraintTop_toTopOf="@+id/airQualityProgressBar" />
 
             <TextView
                 android:id="@+id/tvDateHeader"

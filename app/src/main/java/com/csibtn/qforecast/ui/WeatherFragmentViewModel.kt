@@ -1,6 +1,7 @@
 package com.csibtn.qforecast.ui
 
 import androidx.lifecycle.ViewModel
+import com.csibtn.qforecast.data.AirQualityComponents
 import com.csibtn.qforecast.data.Place
 import com.csibtn.qforecast.data.Weather
 import com.csibtn.qforecast.data.WeatherRepository
@@ -11,17 +12,28 @@ import javax.inject.Inject
 class WeatherFragmentViewModel @Inject constructor(
     private val weatherRepository: WeatherRepository,
 ) : ViewModel() {
-
+    private var place: Place
+    val _place
+        get() = place
     private var weather: Map<String, List<Weather>>
     val _weather
-    get() = weather
+        get() = weather
 
     init {
         weather = emptyMap()
+        place = Place("", "", 0.5, 0.5)
     }
 
-    suspend fun getPlaceByName(placeName: String) =
-        weatherRepository.fetchPlaceLocation(placeName)
+    suspend fun getPlaceByName(placeName: String): Place {
+        place = weatherRepository.fetchPlaceLocation(placeName)[0]
+        return _place
+    }
+
+    suspend fun getAirQualityData(
+        latitude: Double,
+        longitude: Double,
+    ): AirQualityComponents =
+        weatherRepository.getAirQualityData(latitude, longitude).airQualityComponents[0]
 
     suspend fun getForecast(
         latitude: Double,

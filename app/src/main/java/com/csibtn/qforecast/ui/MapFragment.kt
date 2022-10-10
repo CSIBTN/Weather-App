@@ -32,7 +32,7 @@ class MapFragment : Fragment(), OnMapReadyCallback {
     ): View {
         val binding = FragmentMapBinding.inflate(inflater, container, false)
         viewLifecycleOwner.lifecycleScope.launch {
-            delay(500)
+            delay(300)
             val mapFragment =
                 childFragmentManager.findFragmentById(R.id.mapView) as SupportMapFragment
                 mapFragment.getMapAsync(this@MapFragment)

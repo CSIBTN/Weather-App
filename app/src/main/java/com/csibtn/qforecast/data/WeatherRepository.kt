@@ -19,4 +19,9 @@ class WeatherRepository {
 
     suspend fun fetch5DayForecast(latitude: Double, longitude: Double, units: String = "metric") =
         weatherApi.fetch5dayForecast(latitude, longitude, units)
+
+    suspend fun getAirQualityData(
+        latitude: Double,
+        longitude: Double,
+    ): AirQuality = weatherApi.getAirQualityData(latitude, longitude)
 }
