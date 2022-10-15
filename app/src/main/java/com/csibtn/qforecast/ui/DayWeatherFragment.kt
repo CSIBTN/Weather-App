@@ -19,7 +19,7 @@ class DayWeatherFragment : Fragment() {
     ): View {
         val binding = FragmentDayForecastBinding.inflate(inflater, container, false)
         binding.rfCurrentDayPreview.layoutManager = LinearLayoutManager(context)
-        binding.rfCurrentDayPreview.adapter = CurrentDayWeatherAdapter(args.currentDayWeather.toList(),args.place,requireContext()){
+        binding.rfCurrentDayPreview.adapter = CurrentDayWeatherAdapter(args.airQuality,args.currentDayWeather.toList(),args.place,requireContext()){
             findNavController().navigate(
                 DayWeatherFragmentDirections.showAirQualityChart()
             )

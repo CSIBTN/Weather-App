@@ -15,7 +15,7 @@ class WeatherForecastAdapter(
     private val place: Place = Place("", "", 0.5, 0.5),
     private val forecastList: Map<String, List<Weather>>,
     private val context: Context,
-    private val onClickCallback: (List<Weather>) -> Unit,
+    private val onClickCallback: (List<Weather>,Int) -> Unit,
 ) :
     RecyclerView.Adapter<WeatherForecastAdapter.WeatherHolder>() {
 
@@ -39,7 +39,7 @@ class WeatherForecastAdapter(
                 .into(binding.ivWeather)
             binding.tvWeatherDescription.text = weather.weatherDescription[0].description
             binding.root.setOnClickListener {
-                onClickCallback(weatherForecastForADay)
+                onClickCallback(weatherForecastForADay,airQuality)
             }
         }
     }

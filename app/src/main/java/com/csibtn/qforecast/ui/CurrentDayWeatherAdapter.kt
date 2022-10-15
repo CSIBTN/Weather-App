@@ -11,6 +11,7 @@ import com.csibtn.qforecast.databinding.WeatherItemBinding
 import kotlin.math.roundToInt
 
 class CurrentDayWeatherAdapter(
+    private val airQuality : Int,
     private val weatherList: List<Weather>,
     private val place: Place,
     private val context: Context,
@@ -19,6 +20,13 @@ class CurrentDayWeatherAdapter(
     inner class CurrentDayHolder(private val binding: WeatherItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(weather: Weather) {
+            when(airQuality){
+                1 -> binding.airQualityProgressBar.progress = 100
+                2 -> binding.airQualityProgressBar.progress = 80
+                3 -> binding.airQualityProgressBar.progress = 50
+                4 -> binding.airQualityProgressBar.progress = 20
+                else -> binding.airQualityProgressBar.progress = 5
+            }
             binding.tvDegrees.text = "${weather.temperature.temp.roundToInt()}°c"
             binding.tvCountry.text = place.country
             binding.tvPlace.text = place.name

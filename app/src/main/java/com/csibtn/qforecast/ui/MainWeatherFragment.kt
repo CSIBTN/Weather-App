@@ -38,11 +38,12 @@ class MainWeatherFragment() : Fragment() {
                 forecastList = weather,
                 place = place,
                 context = requireContext()
-            ) { weatherList ->
+            ) { weatherList,_ ->
                 findNavController().navigate(
                     MainWeatherFragmentDirections.showFullDayForecast(
                         weatherList.toTypedArray(),
-                        place
+                        place,
+                        1
                     )
                 )
             }
@@ -60,11 +61,12 @@ class MainWeatherFragment() : Fragment() {
                         newPlace,
                         weatherForecastList,
                         requireContext()
-                    ) { weatherList ->
+                    ) { weatherList, airQuality ->
                         findNavController().navigate(
                             MainWeatherFragmentDirections.showFullDayForecast(
                                 weatherList.toTypedArray(),
-                                newPlace
+                                newPlace,
+                                airQuality
                             )
                         )
                     }

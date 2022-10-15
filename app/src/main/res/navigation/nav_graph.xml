@@ -28,6 +28,9 @@
         <action
             android:id="@+id/showAirQualityChart"
             app:destination="@id/airQualityChartFragment" />
+        <argument
+            android:name="airQuality"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
