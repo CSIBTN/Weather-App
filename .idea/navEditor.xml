@@ -8,6 +8,18 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="airQualityChartFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="624" />
+                            <option name="y" value="217" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="dayWeatherFragment">
                     <value>
                       <LayoutPositions>
@@ -16,6 +28,15 @@
                             <option name="x" value="267" />
                             <option name="y" value="223" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_dayWeatherFragment_to_airQualityChartFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -31,12 +52,12 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_mainWeatherFragment_to_mapFragment">
+                            <entry key="showFullDayForecast">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
-                            <entry key="showFullDayForecast">
+                            <entry key="showMap">
                               <value>
                                 <LayoutPositions />
                               </value>

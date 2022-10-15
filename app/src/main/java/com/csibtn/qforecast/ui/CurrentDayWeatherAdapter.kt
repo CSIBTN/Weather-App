@@ -13,7 +13,8 @@ import kotlin.math.roundToInt
 class CurrentDayWeatherAdapter(
     private val weatherList: List<Weather>,
     private val place: Place,
-    private val context: Context
+    private val context: Context,
+    private val onAirQualityCallback: () -> Unit
 ) : RecyclerView.Adapter<CurrentDayWeatherAdapter.CurrentDayHolder>() {
     inner class CurrentDayHolder(private val binding: WeatherItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -26,7 +27,9 @@ class CurrentDayWeatherAdapter(
                 .load(imageLink(weather.weatherDescription[0].icon))
                 .into(binding.ivWeather)
             binding.tvWeatherDescription.text = weather.weatherDescription[0].description
-
+            binding.airQualityProgressBar.setOnClickListener{
+                onAirQualityCallback()
+            }
         }
     }
 

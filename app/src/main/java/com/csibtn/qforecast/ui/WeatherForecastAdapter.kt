@@ -38,7 +38,6 @@ class WeatherForecastAdapter(
                 .load(imageLink(weather.weatherDescription[0].icon))
                 .into(binding.ivWeather)
             binding.tvWeatherDescription.text = weather.weatherDescription[0].description
-
             binding.root.setOnClickListener {
                 onClickCallback(weatherForecastForADay)
             }
