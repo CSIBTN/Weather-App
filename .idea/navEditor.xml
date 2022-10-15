@@ -13,8 +13,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="624" />
-                            <option name="y" value="217" />
+                            <option name="x" value="626" />
+                            <option name="y" value="219" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -31,7 +31,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_dayWeatherFragment_to_airQualityChartFragment">
+                            <entry key="showAirQualityChart">
                               <value>
                                 <LayoutPositions />
                               </value>

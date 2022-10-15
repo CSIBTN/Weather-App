@@ -53,11 +53,11 @@ class MainWeatherFragment() : Fragment() {
                 val weatherForecastList =
                     viewModel.getForecast(newPlace.latitude, newPlace.longitude)
                 val airQuality =
-                    viewModel.getAirQualityData(newPlace.latitude, newPlace.longitude).quality.score
+                    viewModel.getAirQualityData(newPlace.latitude, newPlace.longitude)
 
                 binding.rvForecastPreview.adapter =
                     WeatherForecastAdapter(
-                        airQuality,
+                        airQuality.quality.score,
                         newPlace,
                         weatherForecastList,
                         requireContext()
