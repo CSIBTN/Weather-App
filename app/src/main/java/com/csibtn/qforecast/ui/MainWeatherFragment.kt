@@ -61,7 +61,7 @@ class MainWeatherFragment() : Fragment() {
                         newPlace,
                         weatherForecastList,
                         requireContext()
-                    ) { weatherList, airQuality ->
+                    ) { weatherList, airQuality  ->
                         findNavController().navigate(
                             MainWeatherFragmentDirections.showFullDayForecast(
                                 weatherList.toTypedArray(),
